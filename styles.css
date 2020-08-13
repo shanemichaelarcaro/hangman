@@ -6,8 +6,8 @@ h1,
 
 .container {
     width: 50%;
-    margin: 2rem auto;
-    /* background: magenta; */
+    height: 100%;
+    margin: 2rem auto 9.4rem;
 }
 
 .text {
@@ -59,7 +59,7 @@ h1 {
 }
 
 body {
-    padding-bottom: 6.9rem;
+    /* padding-bottom: 6.9rem; */
     background: rgb(2,0,36);
     background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(131,131,138,1) 45%, rgba(232,237,238,1) 100%);
 }
