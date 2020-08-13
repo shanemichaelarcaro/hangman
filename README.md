@@ -1,0 +1,2 @@
+# hangman
+Javascript Hangman application
