@@ -54,8 +54,9 @@ function findCharacters(character) {
     if(positionsFound.length == 0) {
         updateImage();
 
-        if(document.getElementById('guessed-characters') == null)
+        if(document.getElementById('guessed-characters') == null) {
             addCharacterBank();
+        }
         
         let guessed = document.getElementById('guessed-characters');
         guessed.textContent += (character + ' ');
@@ -92,7 +93,7 @@ function updateImage(updateNumber) {
 
     imageNumber += imageNumber != 6 ? 1 : -6;
     imageNumber = (updateNumber || imageNumber) == -1 ? 0 : imageNumber;
-
+    
     imageID = imageNumber;
     imageSource = imageSource.slice(0, imageSource.length - 1);
     newSource = imageSource + imageNumber + '.png';
@@ -226,5 +227,4 @@ function resetGame() {
     updateWord();
 
     updateImage(-1);
-    addCharacterBank();
 }
