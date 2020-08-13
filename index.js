@@ -149,6 +149,7 @@ function addCharacterBank() {
     characterList.style.padding = '1rem';
     characterList.style.width = '7rem';
     characterList.style.border = '1px solid white';
+    characterList.style.borderRadius = '50%';
     characterList.style.color = 'white';
 
     charList.appendChild(characterList);
@@ -197,6 +198,7 @@ function addResetButton() {
     resetButton.style.color = 'white';
     resetButton.style.width = '6rem';
     resetButton.style.height = '2rem';
+    resetButton.style.borderRadius = '75%';
     resetButton.onclick = function(){resetGame()};
 
     let header = document.getElementById('reset');
