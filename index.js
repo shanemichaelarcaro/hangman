@@ -16,6 +16,7 @@ console.log('Word:', word);
 console.log('Character:', 'i');
 
 addKeys();
+updateWord();
 
 /**
  * Choose a random word from the word collection
@@ -61,7 +62,13 @@ function findCharacters(character) {
         let index = positionsFound[i];
         blankWord = blankWord.slice(0, index) + character + blankWord.slice(index + 1);
     }
+    updateWord();
     console.log('Blank Word:', blankWord);
+}
+
+function updateWord() {
+    let updateBlank = document.getElementById('blank-word');
+    updateBlank.innerText = blankWord;
 }
 
 /**

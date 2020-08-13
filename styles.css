@@ -1,3 +1,8 @@
+h1,
+#blank-word {
+    font-family: 'Ubuntu', sans-serif;
+}
+
 .container {
     width: 50%;
     margin: 2rem auto;
@@ -9,6 +14,13 @@
     width: 100%;
 }
 
+#blank-word {
+    position: absolute;
+    margin: 30rem 5rem 0;
+    font-weight: 300;
+    font-size: 1.5rem;
+}
+
 img {
     position: absolute;
     margin: 0 0 0 8rem;
@@ -18,4 +30,9 @@ img {
 header {
     text-align: center;
     padding: 1rem 0 0 0;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 500;
 }
