@@ -11,9 +11,7 @@ const wordCollection = ['Computer', 'Science', 'Information', 'Technology', 'Eng
 let imageID = 0;
 let word = randomWord();
 let blankWord = createBlankWord();
-
-console.log('Word:', word);
-console.log('Character:', 'i');
+let guessedCharacters = '';
 
 addKeys();
 updateWord();
@@ -55,6 +53,12 @@ function findCharacters(character) {
     // Incorrect character has been pressed
     if(positionsFound.length == 0) {
         updateImage();
+
+        if(document.getElementById('guessed-characters') == null)
+            addCharacterBank();
+        
+        let guessed = document.getElementById('guessed-characters');
+        guessed.textContent += (character + ' ');
         return;
     }
 
@@ -63,7 +67,11 @@ function findCharacters(character) {
         blankWord = blankWord.slice(0, index) + character + blankWord.slice(index + 1);
     }
     updateWord();
-    console.log('Blank Word:', blankWord);
+
+    if(blankWord.indexOf('_') == -1) {
+        addResetButton();
+        disableKeys();
+    }
 }
 
 function updateWord() {
@@ -75,18 +83,22 @@ function updateWord() {
  * Update the hangman image when a incorrect character is chosen
  */
 function updateImage() {
-    if(imageID >= 6)
-        return;
     let image = document.getElementById('img');
     let imageSource = image.src.slice(image.src.lastIndexOf('/') + 1, -4);
     let imageNumber = parseInt(imageSource.charAt(imageSource.length - 1), 10);
 
-    imageNumber += 1;
+
+    imageNumber += imageNumber !== 6 ? 1 : -6;
     imageID = imageNumber;
     imageSource = imageSource.slice(0, imageSource.length - 1);
     newSource = imageSource + imageNumber + '.png';
     console.log('New Source:', newSource);
     image.src = 'assets/' + newSource;
+
+    if(imageID == 6) {
+        addResetButton();
+        disableKeys();
+    }
 }
 
 /**
@@ -113,13 +125,86 @@ function addKeys() {
     }
 }
 
+function addCharacterBank() {
+    let charList = document.getElementById('char-list');
+    let characterList = document.createElement('p');
+    characterList.id = 'guessed-characters';
+
+    characterList.style.fontFamily = 'Ubuntu sans-serif';
+
+    characterList.style.position = 'absolute';
+    characterList.style.fontWeight = '300';
+    characterList.style.fontSize = '1.5rem';
+
+    characterList.style.margin = '10rem 5rem 0';
+    characterList.style.padding = '1rem';
+    characterList.style.width = '7rem';
+    characterList.style.border = '1px solid white';
+    characterList.style.color = 'white';
+
+    charList.appendChild(characterList);
+}
+
 /**
  * When a button is pressed get the character that corresponds to it
  * and compare it to the chosen word.
  * @param {ID of button being pressed} buttonID 
  */
 function retrieveCharacter(buttonID) {
+    let button = document.getElementById(buttonID);
+    button.disabled = true;
+
     findCharacters(buttonID);
     console.log('Pressed:', buttonID);
+}
+
+function disableKeys() {
+    for(let i = 65; i < 91; i++) {
+        let letter = String.fromCharCode(i);
+        let button = document.getElementById(letter);
+
+        button.disabled = true;
+    }
+}
+
+function addResetButton() {
+    let resetButton = document.createElement('button');
+    let resetText = document.createTextNode('Reset');
+
+    resetButton.appendChild(resetText);
+
+    resetButton.id = 'reset-button';
+    resetButton.style.position = 'absolute';
+    resetButton.style.margin = '2.3rem 0 0 1rem';
+    resetButton.style.fontFamily = 'Ubuntu sans-serif';
+    resetButton.style.background = 'none';
+    resetButton.style.border = '1px solid white';
+    resetButton.style.color = 'white';
+    resetButton.style.width = '6rem';
+    resetButton.style.height = '2rem';
+    resetButton.onclick = function(){resetGame()};
+
+    let header = document.getElementById('reset');
+    header.appendChild(resetButton);
+}
+
+function resetGame() {
+    let area = document.getElementById('text-area');
+    let reset = document.getElementById('reset');
+    let chars = document.getElementById('char-list');
+
+    area.innerHTML = '';
+    reset.innerHTML = '';
+    chars.innerHTML = '';
+    
+
+    imageID = 0;
+    word = randomWord();
+    blankWord = createBlankWord();
+
+    addKeys();
+    updateWord();
+    updateImage();
+    addCharacterBank();
 }
 
