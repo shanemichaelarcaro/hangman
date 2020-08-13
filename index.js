@@ -125,6 +125,11 @@ function addKeys() {
     }
 }
 
+/**
+ * Adding character bank to the screen and formatting properly.
+ * CSS is clashing with the dynamic adding of this element for some reason,
+ * may look at it again later.
+ */
 function addCharacterBank() {
     let charList = document.getElementById('char-list');
     let characterList = document.createElement('p');
@@ -158,6 +163,9 @@ function retrieveCharacter(buttonID) {
     console.log('Pressed:', buttonID);
 }
 
+/**
+ * After the game is over disable all keys from being pressed.
+ */
 function disableKeys() {
     for(let i = 65; i < 91; i++) {
         let letter = String.fromCharCode(i);
@@ -167,6 +175,9 @@ function disableKeys() {
     }
 }
 
+/**
+ * After the game is over add a reset button to the screen.
+ */
 function addResetButton() {
     let resetButton = document.createElement('button');
     let resetText = document.createTextNode('Reset');
@@ -188,6 +199,12 @@ function addResetButton() {
     header.appendChild(resetButton);
 }
 
+/**
+ * When the reset button is pressed game variables must be returned
+ * to their defaulted state. The HTML elements that are dynamically
+ * added to the screen will have their parents div elements all reset
+ * as well.
+ */
 function resetGame() {
     let area = document.getElementById('text-area');
     let reset = document.getElementById('reset');
@@ -207,4 +224,3 @@ function resetGame() {
     updateImage();
     addCharacterBank();
 }
-
