@@ -1,0 +1,21 @@
+.container {
+    width: 50%;
+    margin: 2rem auto;
+    background: magenta;
+}
+
+.text {
+    margin: 35rem 0 0 1.2rem;
+    width: 100%;
+}
+
+img {
+    position: absolute;
+    margin: 0 0 0 8rem;
+    padding: 0 2rem 2rem 6rem;
+}
+
+header {
+    text-align: center;
+    padding: 1rem 0 0 0;
+}
