@@ -81,18 +81,21 @@ function updateWord() {
 
 /**
  * Update the hangman image when a incorrect character is chosen
+ * The image is now reset by using updateNumber as an option parameter
+ * by using it as a falsy value. 
+ * @param {optional reset parameter} updateNumber 
  */
-function updateImage() {
+function updateImage(updateNumber) {
     let image = document.getElementById('img');
     let imageSource = image.src.slice(image.src.lastIndexOf('/') + 1, -4);
     let imageNumber = parseInt(imageSource.charAt(imageSource.length - 1), 10);
 
+    imageNumber += imageNumber != 6 ? 1 : -6;
+    imageNumber = (updateNumber || imageNumber) == -1 ? 0 : imageNumber;
 
-    imageNumber += imageNumber !== 6 ? 1 : -6;
     imageID = imageNumber;
     imageSource = imageSource.slice(0, imageSource.length - 1);
     newSource = imageSource + imageNumber + '.png';
-    console.log('New Source:', newSource);
     image.src = 'assets/' + newSource;
 
     if(imageID == 6) {
@@ -221,6 +224,7 @@ function resetGame() {
 
     addKeys();
     updateWord();
-    updateImage();
+
+    updateImage(-1);
     addCharacterBank();
 }
