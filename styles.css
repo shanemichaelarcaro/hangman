@@ -1,12 +1,13 @@
 h1,
-#blank-word {
+#blank-word,
+#guessed-characters {
     font-family: 'Ubuntu', sans-serif;
 }
 
 .container {
     width: 50%;
     margin: 2rem auto;
-    background: magenta;
+    /* background: magenta; */
 }
 
 .text {
@@ -14,11 +15,31 @@ h1,
     width: 100%;
 }
 
-#blank-word {
+#blank-word,
+#guessed-characters {
     position: absolute;
-    margin: 30rem 5rem 0;
     font-weight: 300;
     font-size: 1.5rem;
+}
+
+#blank-word {
+    margin: 30rem 5rem 0;
+    color: white;
+}
+
+#guessed-characters {
+    margin: 10rem 5rem 0;
+    padding: 1rem;
+    width: 7rem;
+    border: 1px solid white;
+    /* background: white; */
+}
+
+.reset-button {
+    position: absolute;
+    margin: 26rem 0 0 46rem;
+    background: green;
+    width: 10rem;
 }
 
 img {
@@ -35,4 +56,10 @@ header {
 h1 {
     font-size: 2rem;
     font-weight: 500;
+}
+
+body {
+    padding-bottom: 6.9rem;
+    background: rgb(2,0,36);
+    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(131,131,138,1) 45%, rgba(232,237,238,1) 100%);
 }
