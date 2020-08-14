@@ -6,7 +6,9 @@
  */
 
 const wordCollection = ['Computer', 'Science', 'Information', 'Technology', 'Engineer', 
-'Business', 'Website', 'Design', 'Portfolio', 'School']
+'Business', 'Website', 'Design', 'Portfolio', 'School', 'Javascript', 'Python', 'Java',
+'Location', 'Service', 'Subway', 'City', 'Building', 'Capital', 'Museum', 'Fictional',
+'Crime', 'Sports', 'Team', 'Memorial', 'Mechanical', 'Enumerate', 'Concentrate']
 
 let imageID = 0;
 let word = randomWord();
@@ -76,7 +78,7 @@ function findCharacters(character) {
 }
 
 function updateWord() {
-    const updateBlank = document.getElementById('blank-word');
+    let updateBlank = document.getElementById('blank-word');
     updateBlank.innerText = blankWord;
 }
 
@@ -88,7 +90,7 @@ function updateWord() {
  */
 function updateImage(updateNumber) {
     const image = document.getElementById('img');
-    const imageSource = image.src.slice(image.src.lastIndexOf('/') + 1, -4);
+    let imageSource = image.src.slice(image.src.lastIndexOf('/') + 1, -4);
     let imageNumber = parseInt(imageSource.charAt(imageSource.length - 1), 10);
 
     imageNumber += imageNumber != 6 ? 1 : -6;
@@ -110,7 +112,7 @@ function updateImage(updateNumber) {
  */
 function addKeys() {
     for(let i = 65; i < 91; i++) {
-        let letter = String.fromCharCode(i);
+        const letter = String.fromCharCode(i);
         const button = document.createElement('button');
 
         // console.log('Letter:', letter);
@@ -122,12 +124,10 @@ function addKeys() {
         button.style.paddingRight = '1rem';
 
         button.id = letter;
-        button.onclick = function() {
-            retrieveCharacter(button.id)
-        };
+        button.onclick = function(){retrieveCharacter(button.id)};
 
         const textArea = document.getElementById('text-area');
-        textArea.appendChild(button);
+            textArea.appendChild(button);
     }
 }
 
@@ -175,8 +175,8 @@ function retrieveCharacter(buttonID) {
  */
 function disableKeys() {
     for(let i = 65; i < 91; i++) {
-        let letter = String.fromCharCode(i);
-        let button = document.getElementById(letter);
+        const letter = String.fromCharCode(i);
+        const button = document.getElementById(letter);
 
         button.disabled = true;
     }
