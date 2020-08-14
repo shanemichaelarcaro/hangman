@@ -76,7 +76,7 @@ function findCharacters(character) {
 }
 
 function updateWord() {
-    let updateBlank = document.getElementById('blank-word');
+    const updateBlank = document.getElementById('blank-word');
     updateBlank.innerText = blankWord;
 }
 
@@ -87,8 +87,8 @@ function updateWord() {
  * @param {optional reset parameter} updateNumber 
  */
 function updateImage(updateNumber) {
-    let image = document.getElementById('img');
-    let imageSource = image.src.slice(image.src.lastIndexOf('/') + 1, -4);
+    const image = document.getElementById('img');
+    const imageSource = image.src.slice(image.src.lastIndexOf('/') + 1, -4);
     let imageNumber = parseInt(imageSource.charAt(imageSource.length - 1), 10);
 
     imageNumber += imageNumber != 6 ? 1 : -6;
@@ -111,7 +111,7 @@ function updateImage(updateNumber) {
 function addKeys() {
     for(let i = 65; i < 91; i++) {
         let letter = String.fromCharCode(i);
-        let button = document.createElement('button');
+        const button = document.createElement('button');
 
         // console.log('Letter:', letter);
         button.appendChild(document.createTextNode(letter));
@@ -122,10 +122,12 @@ function addKeys() {
         button.style.paddingRight = '1rem';
 
         button.id = letter;
-        button.onclick = function(){retrieveCharacter(button.id)};
+        button.onclick = function() {
+            retrieveCharacter(button.id)
+        };
 
-        let textArea = document.getElementById('text-area');
-            textArea.appendChild(button);
+        const textArea = document.getElementById('text-area');
+        textArea.appendChild(button);
     }
 }
 
@@ -135,8 +137,8 @@ function addKeys() {
  * may look at it again later.
  */
 function addCharacterBank() {
-    let charList = document.getElementById('char-list');
-    let characterList = document.createElement('p');
+    const charList = document.getElementById('char-list');
+    const characterList = document.createElement('p');
     characterList.id = 'guessed-characters';
 
     characterList.style.fontFamily = 'Ubuntu sans-serif';
@@ -161,7 +163,7 @@ function addCharacterBank() {
  * @param {ID of button being pressed} buttonID 
  */
 function retrieveCharacter(buttonID) {
-    let button = document.getElementById(buttonID);
+    const button = document.getElementById(buttonID);
     button.disabled = true;
 
     findCharacters(buttonID);
@@ -184,8 +186,8 @@ function disableKeys() {
  * After the game is over add a reset button to the screen.
  */
 function addResetButton() {
-    let resetButton = document.createElement('button');
-    let resetText = document.createTextNode('Reset');
+    const resetButton = document.createElement('button');
+    const resetText = document.createTextNode('Reset');
 
     resetButton.appendChild(resetText);
 
@@ -201,7 +203,7 @@ function addResetButton() {
     resetButton.style.borderRadius = '75%';
     resetButton.onclick = function(){resetGame()};
 
-    let header = document.getElementById('reset');
+    const header = document.getElementById('reset');
     header.appendChild(resetButton);
 }
 
@@ -212,9 +214,9 @@ function addResetButton() {
  * as well.
  */
 function resetGame() {
-    let area = document.getElementById('text-area');
-    let reset = document.getElementById('reset');
-    let chars = document.getElementById('char-list');
+    const area = document.getElementById('text-area');
+    const reset = document.getElementById('reset');
+    const chars = document.getElementById('char-list');
 
     area.innerHTML = '';
     reset.innerHTML = '';
