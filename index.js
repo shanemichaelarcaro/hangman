@@ -16,7 +16,7 @@ let blankWord = createBlankWord();
 let guessedCharacters = '';
 
 addKeys();
-updateWord();
+updateBlankWord();
 
 /**
  * Choose a random word from the word collection
@@ -69,7 +69,7 @@ function findCharacters(character) {
         let index = positionsFound[i];
         blankWord = blankWord.slice(0, index) + character + blankWord.slice(index + 1);
     }
-    updateWord();
+    updateBlankWord();
 
     if(blankWord.indexOf('_') == -1) {
         addResetButton();
@@ -77,9 +77,25 @@ function findCharacters(character) {
     }
 }
 
-function updateWord() {
-    let updateBlank = document.getElementById('blank-word');
+/**
+ * Updates the blank word on the screen
+ */
+function updateBlankWord() {
+    const updateBlank = document.getElementById('blank-word');
     updateBlank.innerText = blankWord;
+}
+
+
+/**
+ * Updates the 'lost game' word on the screen
+ */
+function updateLostWord() {
+    const updateLost = document.getElementById('lost-word');
+    let lostWord = ''
+
+    for(let i = 0; i < word.length; i++)
+        lostWord += word.charAt(i) + ' ';
+    updateLost.textContent = lostWord;
 }
 
 /**
@@ -104,6 +120,7 @@ function updateImage(updateNumber) {
     if(imageID == 6) {
         addResetButton();
         disableKeys();
+        updateLostWord();
     }
 }
 
@@ -167,7 +184,6 @@ function retrieveCharacter(buttonID) {
     button.disabled = true;
 
     findCharacters(buttonID);
-    console.log('Pressed:', buttonID);
 }
 
 /**
@@ -222,13 +238,15 @@ function resetGame() {
     reset.innerHTML = '';
     chars.innerHTML = '';
     
+    const lostWord = document.getElementById('lost-word');
+    lostWord.textContent = '';
 
     imageID = 0;
     word = randomWord();
     blankWord = createBlankWord();
 
     addKeys();
-    updateWord();
+    updateBlankWord();
 
     updateImage(-1);
 }

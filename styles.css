@@ -1,5 +1,6 @@
 h1,
 #blank-word,
+#lost-word,
 #guessed-characters {
     font-family: 'Ubuntu', sans-serif;
 }
@@ -16,6 +17,7 @@ h1,
 }
 
 #blank-word,
+#lost-word,
 #guessed-characters {
     position: absolute;
     font-weight: 300;
@@ -25,6 +27,11 @@ h1,
 #blank-word {
     margin: 30rem 5rem 0;
     color: white;
+}
+
+#lost-word {
+    margin: 28rem 5rem 0;
+    color: red;
 }
 
 #guessed-characters {
